@@ -46,13 +46,3 @@ You can then run the commands like:
 program.exe build .
 program.exe test . "**.filtered"
 ```
-
-## Publishing
-
-This package is automatically published to NuGet when a new release is created on GitHub. You can also manually trigger the publish workflow from the Actions tab.
-
-To publish:
-1. Create a new release on GitHub
-2. The workflow will automatically build and publish the package to NuGet
-
-Alternatively, use the workflow dispatch to manually publish a specific version.
