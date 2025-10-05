@@ -1,0 +1,11 @@
+/home/runner/work/Argh.NET/Argh.NET/ArghParser/bin/Release/netstandard2.0/Argh.NET.deps.json
+/home/runner/work/Argh.NET/Argh.NET/ArghParser/bin/Release/netstandard2.0/Argh.NET.dll
+/home/runner/work/Argh.NET/Argh.NET/ArghParser/bin/Release/netstandard2.0/Argh.NET.pdb
+/home/runner/work/Argh.NET/Argh.NET/ArghParser/obj/Release/netstandard2.0/Argh.NET.csproj.AssemblyReference.cache
+/home/runner/work/Argh.NET/Argh.NET/ArghParser/obj/Release/netstandard2.0/Argh.NET.GeneratedMSBuildEditorConfig.editorconfig
+/home/runner/work/Argh.NET/Argh.NET/ArghParser/obj/Release/netstandard2.0/Argh.NET.AssemblyInfoInputs.cache
+/home/runner/work/Argh.NET/Argh.NET/ArghParser/obj/Release/netstandard2.0/Argh.NET.AssemblyInfo.cs
+/home/runner/work/Argh.NET/Argh.NET/ArghParser/obj/Release/netstandard2.0/Argh.NET.csproj.CoreCompileInputs.cache
+/home/runner/work/Argh.NET/Argh.NET/ArghParser/obj/Release/netstandard2.0/Argh.NET.sourcelink.json
+/home/runner/work/Argh.NET/Argh.NET/ArghParser/obj/Release/netstandard2.0/Argh.NET.dll
+/home/runner/work/Argh.NET/Argh.NET/ArghParser/obj/Release/netstandard2.0/Argh.NET.pdb

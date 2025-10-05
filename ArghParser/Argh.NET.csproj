@@ -2,7 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Argh.NET</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Algo-ryth-mix</Authors>
+    <Description>Argument parsing based on method signatures, inspired by Python's argh package.</Description>
+    <PackageProjectUrl>https://github.com/Algo-ryth-mix/Argh.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Algo-ryth-mix/Argh.NET</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>argument-parsing;command-line;cli</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2025.2.2" />

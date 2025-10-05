@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Argh.NET</id>
+    <version>1.0.0</version>
+    <authors>Algo-ryth-mix</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/Algo-ryth-mix/Argh.NET</projectUrl>
+    <description>Argument parsing based on method signatures, inspired by Python's argh package.</description>
+    <tags>argument-parsing command-line cli</tags>
+    <repository type="git" url="https://github.com/Algo-ryth-mix/Argh.NET" commit="0caa3801a731e71ee1324ba1ed1f41cf90936bb1" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="JetBrains.Annotations" version="2025.2.2" exclude="Build,Analyzers" />
+        <dependency id="System.CommandLine" version="2.0.0-rc.1.25451.107" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="/home/runner/work/Argh.NET/Argh.NET/ArghParser/bin/Release/netstandard2.0/Argh.NET.dll" target="lib/netstandard2.0/Argh.NET.dll" />
+    <file src="/home/runner/work/Argh.NET/Argh.NET/README.md" target="/README.md" />
+  </files>
+</package>
