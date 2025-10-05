@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "build .": {
+      "commandName": "Project",
+      "commandLineArgs": "build ."
+    },
+    "help": {
+      "commandName": "Project",
+      "commandLineArgs": "-?"
+    },
+    "test": {
+      "commandName": "Project",
+      "commandLineArgs": "t ./tests *.glob.test"
+    }
+  }
+}

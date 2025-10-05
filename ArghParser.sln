@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36511.14 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argh.NET", "ArghParser\Argh.NET.csproj", "{CE4A7085-E4C5-419D-A4CD-24BF284B6DFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argh.Sample", "Argh.Sample\Argh.Sample.csproj", "{CE99CD7B-E244-44F3-92D9-045D85F1CED9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE4A7085-E4C5-419D-A4CD-24BF284B6DFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE4A7085-E4C5-419D-A4CD-24BF284B6DFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE4A7085-E4C5-419D-A4CD-24BF284B6DFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE4A7085-E4C5-419D-A4CD-24BF284B6DFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE99CD7B-E244-44F3-92D9-045D85F1CED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE99CD7B-E244-44F3-92D9-045D85F1CED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE99CD7B-E244-44F3-92D9-045D85F1CED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE99CD7B-E244-44F3-92D9-045D85F1CED9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {06E4FC0A-95B5-402B-A2BD-86712C9A41DE}
+	EndGlobalSection
+EndGlobal
