@@ -18,10 +18,23 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
+      - name: Extract version from tag
+        id: get_version
+        shell: pwsh
+        run: |
+          if ($env:GITHUB_REF -match 'refs/tags/v?(.+)') {
+            $version = $matches[1]
+            Write-Output "VERSION=$version" >> $env:GITHUB_OUTPUT
+            Write-Output "Using version: $version"
+          } else {
+            Write-Output "VERSION=1.0.0" >> $env:GITHUB_OUTPUT
+            Write-Output "No tag found, using default version: 1.0.0"
+          }
+
       - name: dotnet pack
         run: |
-          dotnet pack
-          dotnet pack -r win-x64
+          dotnet pack /p:Version=${{ steps.get_version.outputs.VERSION }}
+          dotnet pack -r win-x64 /p:Version=${{ steps.get_version.outputs.VERSION }}
 
       # Use the ambient GitHub token to login to NuGet and retrieve an API key
       - name: NuGet login (OIDC → temp API key)
