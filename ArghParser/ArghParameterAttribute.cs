@@ -1,7 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace Argh
+namespace Argh.NET
 {
     [AttributeUsage(AttributeTargets.Parameter),MeansImplicitUse]
     public class ArghParameterAttribute : Attribute

@@ -4,6 +4,6 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>test</ActiveDebugProfile>
+    <ActiveDebugProfile>test parallel</ActiveDebugProfile>
   </PropertyGroup>
 </Project>

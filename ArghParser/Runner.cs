@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.CommandLine;
 using System.CommandLine.Parsing;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using Argh.NET.Helpers;
 
-namespace Argh
+namespace Argh.NET
 {
     public static class Runner
     {
@@ -17,86 +19,39 @@ namespace Argh
         {
             args = args ?? new string[] { };
 
-            var methods = @classType.GetMethods(BindingFlags.Static | BindingFlags.Public);
-
-            var methodsWithAttributes = methods
-                .Select(x => (x.GetCustomAttribute<ArghCommandAttribute>(), x))
-                .Where(x => x.Item1 != null && x.Item2.ReturnType == typeof(int))
-                .ToList();
+            var methodsWithAttributes = CommandDiscovery.DiscoverCommands(@classType).ToList();
 
             RootCommand root = new RootCommand(rootCommandDescription);
 
-            foreach (var (attribute, method) in methodsWithAttributes)
+            foreach (var spec in methodsWithAttributes)
             {
-                Command command = new Command(attribute.Verb, attribute.Description);
-                foreach (var alias in (attribute.Aliases ?? string.Empty).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    command.Aliases.Add(alias.Trim());
-                }
+                Command command = new Command(spec.Attribute.Verb, spec.Attribute.Description);
+                SymbolFactory.AddAlias(spec.Attribute.Aliases, command.Aliases);
 
-                foreach (var parameter in method.GetParameters())
+                // Process all parameters (both arguments and options) using the ParameterProcessor helper
+                var symbols = ParameterProcessor.Process(spec.Method.GetParameters()).ToList();
+                
+                foreach (var symbolWrapper in symbols)
                 {
-                    object defaultValue = null;
-                    if (parameter.HasDefaultValue)
+                    if (symbolWrapper.IsArgument)
                     {
-                        defaultValue = parameter.DefaultValue;
+                        command.Arguments.Add(symbolWrapper.AsArgument);
                     }
-                    var paramAttrib = parameter.GetCustomAttribute<ArghParameterAttribute>();
-                    var argument = CreateArgument(parameter.ParameterType, paramAttrib?.Name ?? parameter.Name, defaultValue);
-                    argument.Description = paramAttrib?.Description ?? string.Empty;
-                    command.Arguments.Add(argument);
-
+                    else if (symbolWrapper.IsOption)
+                    {
+                        command.Options.Add(symbolWrapper.AsOption);
+                    }
                 }
+
                 command.SetAction(result =>
                 {
-                    var values = method.GetParameters().Select(x => GetParameterValue(x, result)).ToArray();
-                    return (int)method.Invoke(null, values);
+                    var values = symbols.Select(x => x.ValueGetter(result)).ToArray();
+                    return (int)spec.Method.Invoke(null, values);
                 });
                 root.Add(command);
             }
 
             return CommandLineParser.Parse(root, args).Invoke();
         }
-
-        private static object GetParameterValue(ParameterInfo parameter, ParseResult result)
-        {
-            var paramAttrib = parameter.GetCustomAttribute<ArghParameterAttribute>();
-            var argumentName = paramAttrib?.Name ?? parameter.Name;
-            var helperType = typeof(GetValueBinder<>)?
-                .MakeGenericType(parameter.ParameterType);
-            var helperMethod = helperType.GetMethod(nameof(GetValueBinder<int>.GetValue));
-
-            var value = helperMethod?.Invoke(null, new object[] { result, argumentName });
-            return value;
-        }
-
-
-        private static Argument CreateArgument(Type argumentType, string name, object defaultValue)
-        {
-            var type = typeof(Argument<>).MakeGenericType(argumentType);
-            var inst = Activator.CreateInstance(type, name) as Argument;
-
-            if (inst == null || defaultValue == null)
-                return inst;
-
-            var argumentResultParam = Expression.Parameter(typeof(ArgumentResult), "_");
-            var valueConstant = Expression.Constant(defaultValue, defaultValue.GetType());
-            var castValue = Expression.Convert(valueConstant, argumentType);
-            var lambda = Expression.Lambda(
-                typeof(Func<,>).MakeGenericType(typeof(ArgumentResult), argumentType),
-                castValue,
-                argumentResultParam
-            );
-            inst.GetType().GetProperty("DefaultValueFactory")?.SetValue(inst, lambda.Compile());
-            return inst;
-        }
-    }
-}
-
-public static class GetValueBinder<T>
-{
-    public static T GetValue(ParseResult result, string name)
-    {
-        return result.GetValue<T>(name);
     }
 }

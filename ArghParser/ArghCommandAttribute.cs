@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 namespace Argh
 {
 
-    [AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false), MeansImplicitUse]
+    [AttributeUsage(AttributeTargets.Method, Inherited = false), MeansImplicitUse]
     public class ArghCommandAttribute : Attribute
     {
         public string Verb { get; set; }

@@ -4,13 +4,49 @@
       "commandName": "Project",
       "commandLineArgs": "build ."
     },
+    "build with config": {
+      "commandName": "Project",
+      "commandLineArgs": "build . --configuration Debug"
+    },
+    "build verbose": {
+      "commandName": "Project",
+      "commandLineArgs": "build . -c Debug --verbose"
+    },
+    "test basic": {
+      "commandName": "Project",
+      "commandLineArgs": "test ./tests"
+    },
+    "test with filter": {
+      "commandName": "Project",
+      "commandLineArgs": "t ./tests *.glob.test"
+    },
+    "test parallel": {
+      "commandName": "Project",
+      "commandLineArgs": "test ./tests *.integration.test --parallel=True --max-threads 8"
+    },
+    "test parallel short": {
+      "commandName": "Project",
+      "commandLineArgs": "tests ./tests -p"
+    },
+    "deploy staging": {
+      "commandName": "Project",
+      "commandLineArgs": "deploy production"
+    },
+    "deploy with options": {
+      "commandName": "Project",
+      "commandLineArgs": "deploy production --environment prod --timeout 600"
+    },
+    "deploy dry run": {
+      "commandName": "Project",
+      "commandLineArgs": "deploy production -e staging --dry-run -t 120"
+    },
     "help": {
       "commandName": "Project",
       "commandLineArgs": "-?"
     },
-    "test": {
+    "help build": {
       "commandName": "Project",
-      "commandLineArgs": "t ./tests *.glob.test"
+      "commandLineArgs": "build -?"
     }
   }
 }
